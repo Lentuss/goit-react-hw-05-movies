@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { Notify } from 'notiflix';
-import { Outlet, useParams } from 'react-router-dom';
-import { getDetails } from '../../services/API';
+
+import { getDetails } from 'services/API';
 import { Additionally } from 'components/Additionally/Additionally';
+
 import {
   Container,
   Details,
+  Back,
+  BackBtn,
   Img,
   Attributes,
   Title,
@@ -23,6 +27,7 @@ const MovieDetails = () => {
       try {
         const resp = await getDetails(movieId);
         setMovie(resp);
+        console.log(resp);
       } catch (error) {
         Notify.error('Something went wrong');
       }
@@ -37,15 +42,22 @@ const MovieDetails = () => {
     }
   };
   const genresContent = getGenres();
-
+  const navigate = useNavigate();
   return (
     <Container>
+      <Back>
+        <BackBtn type="button" onClick={() => navigate(-1)}>
+          Go back
+        </BackBtn>
+      </Back>
       {movie && (
         <Details>
           <Img
             src={
-              'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/' +
-              movie.poster_path
+              movie.poster_path !== null
+                ? 'https://www.themoviedb.org/t/p/w300_and_h450_bestv2/' +
+                  movie.poster_path
+                : 'https://via.placeholder.com/300x450'
             }
             alt={movie.title}
           />

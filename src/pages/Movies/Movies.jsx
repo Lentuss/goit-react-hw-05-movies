@@ -1,12 +1,15 @@
-import Searchbar from 'components/Searchbar';
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Notify } from 'notiflix';
-import { getSearched } from 'services/API';
+
+import Searchbar from 'components/Searchbar';
 import MoviesList from 'components/MoviesList';
+import { getSearched } from 'services/API';
 import { Container } from './Movies.styled';
 
 const Movies = () => {
-  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('query') || '');
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -27,16 +30,19 @@ const Movies = () => {
 
   const getQuery = query => {
     setQuery(query);
+    setSearchParams({ query: query });
   };
 
   const prevPath = '';
 
   return (
     <>
-      <Searchbar onSubmit={getQuery} />
+      <Searchbar onSubmit={getQuery} query={query} />
       <Container>
-        {movies.length !== 0 && (
+        {movies.length !== 0 ? (
           <MoviesList movies={movies} prevPath={prevPath} />
+        ) : (
+          query !== '' && <p>Nothing found. Try again</p>
         )}
       </Container>
     </>

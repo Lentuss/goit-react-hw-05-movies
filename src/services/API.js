@@ -29,7 +29,7 @@ export const getSearched = async (searchQuery, page) => {
 
 export const getDetails = async id => {
   try {
-    const link = `/movie/${id}?api_key=${API_KEY}&page=1&language=en-US`;
+    const link = `/movie/${id}?api_key=${API_KEY}&page=1&language=us-en`;
     return await getFilmsData(link);
   } catch (error) {
     console.log(error.message);

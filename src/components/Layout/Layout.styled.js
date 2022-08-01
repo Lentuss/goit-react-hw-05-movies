@@ -12,11 +12,6 @@ export const Header = styled.header`
   border-bottom: 2px solid gray;
 `;
 
-export const Back = styled.div`
-  background-color: #b39cd0;
-  padding: 10px;
-`;
-
 export const NavBar = styled.nav`
   padding: 10px;
 `;

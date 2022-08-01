@@ -4,6 +4,19 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
+export const Back = styled.div`
+  background-color: #b39cd0;
+  padding: 10px;
+`;
+
+export const BackBtn = styled.button`
+  min-width: 100px;
+  padding: 5px;
+  border-radius: 5px;
+  border-color: transparent;
+  background-color: #fbeaff;
+`;
+
 export const Details = styled.div`
   display: flex;
 `;
