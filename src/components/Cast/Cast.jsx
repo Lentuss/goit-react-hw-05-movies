@@ -18,6 +18,9 @@ const Cast = () => {
   const [castItems, setCastItems] = useState([]);
 
   useEffect(() => {
+    if (!movieId) {
+      return;
+    }
     const getData = async movieId => {
       try {
         const resp = await getCredits(movieId);

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -9,8 +10,10 @@ export const Back = styled.div`
   padding: 10px;
 `;
 
-export const BackBtn = styled.button`
-  min-width: 100px;
+export const BackBtn = styled(Link)`
+  display: block;
+  text-align: center;
+  width: 100px;
   padding: 5px;
   border-radius: 5px;
   border-color: transparent;
@@ -39,6 +42,10 @@ export const AttrName = styled.p`
   font-size: 22px;
   font-weight: bold;
   margin-bottom: 5px;
+`;
+
+export const VoteAverage = styled.p`
+  font-style: italic;
 `;
 
 export const About = styled.p`

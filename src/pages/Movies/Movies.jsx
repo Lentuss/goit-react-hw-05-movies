@@ -8,7 +8,7 @@ import { getSearched } from 'services/API';
 import { Container } from './Movies.styled';
 
 const Movies = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('query') || '');
   const [movies, setMovies] = useState([]);
 
@@ -30,14 +30,13 @@ const Movies = () => {
 
   const getQuery = query => {
     setQuery(query);
-    setSearchParams({ query: query });
   };
 
   const prevPath = '';
 
   return (
     <>
-      <Searchbar onSubmit={getQuery} query={query} />
+      <Searchbar onSubmit={getQuery} />
       <Container>
         {movies.length !== 0 ? (
           <MoviesList movies={movies} prevPath={prevPath} />

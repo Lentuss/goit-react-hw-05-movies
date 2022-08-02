@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { Notify } from 'notiflix';
+import { useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import {
@@ -10,23 +10,24 @@ import {
   SearchInput,
 } from './Searchbar.styled';
 
-const Searchbar = ({ onSubmit, uery }) => {
-  const [query, setQuery] = useState('');
+const Searchbar = ({ onSubmit }) => {
+  const [searchQuery, setSearchQuery] = useSearchParams();
+  const queryValue = searchQuery.get('query') ?? '';
 
   const handleInput = e => {
-    if (e.currentTarget.value.toLowerCase() !== query)
-      setQuery(e.currentTarget.value.toLowerCase());
+    if (e.currentTarget.value.toLowerCase() !== searchQuery)
+      setSearchQuery({ query: e.currentTarget.value.toLowerCase() });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (query.trim() === '') {
+    if (queryValue.trim() === '') {
       Notify.info('Enter the query');
       return;
     }
 
-    onSubmit(query);
+    onSubmit(queryValue);
   };
 
   return (
@@ -42,7 +43,7 @@ const Searchbar = ({ onSubmit, uery }) => {
           autoFocus
           placeholder="Search movies"
           name="query"
-          value={query}
+          value={queryValue}
           onChange={handleInput}
         />
       </SearchForm>
@@ -52,7 +53,6 @@ const Searchbar = ({ onSubmit, uery }) => {
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  query: PropTypes.string.isRequired,
 };
 
 export default Searchbar;

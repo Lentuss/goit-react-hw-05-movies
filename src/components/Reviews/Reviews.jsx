@@ -9,6 +9,9 @@ const Reviews = () => {
   const [reviewsData, setReviewsData] = useState([]);
 
   useEffect(() => {
+    if (!movieId) {
+      return;
+    }
     const getData = async movieId => {
       try {
         const resp = await getReviews(movieId);
