@@ -24,8 +24,8 @@ export const App = () => {
                 element={<Reviews id={507086} page={1} />}
               />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>

@@ -20,5 +20,5 @@ export const Additionally = ({ backPath }) => {
 };
 
 Additionally.propTypes = {
-  backPath: PropTypes.string.isRequired,
+  backPath: PropTypes.any.isRequired,
 };

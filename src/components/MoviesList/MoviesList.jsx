@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 
 const MoviesList = ({ movies, prevPath }) => {
   const location = useLocation();
-  console.log(location);
   return (
     <MoviesItems>
       {movies.map(movie => (

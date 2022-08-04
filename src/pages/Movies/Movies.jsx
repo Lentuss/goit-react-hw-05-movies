@@ -16,7 +16,6 @@ const Movies = () => {
     const getData = async () => {
       try {
         const resp = await getSearched(query);
-        console.log(resp);
         setMovies([...resp.results]);
       } catch (error) {
         Notify.error('Something went wrong');

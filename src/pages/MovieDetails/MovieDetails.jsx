@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { Notify } from 'notiflix';
 
@@ -23,7 +23,7 @@ const MovieDetails = () => {
   const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState([]);
-  const backPath = location.state.from;
+  const backPath = location.state?.from ?? '/';
 
   useEffect(() => {
     const getData = async movieId => {
@@ -78,7 +78,9 @@ const MovieDetails = () => {
         </Details>
       )}
       <Additionally backPath={backPath} />
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </Container>
   );
 };
